@@ -4,14 +4,9 @@ import ReactDOM from 'react-dom';
 
 import 'purecss/build/pure.css';
 import './index.css';
-import Visualizer from './components/Visualizer';
+import { App } from './components/App';
 
-
-ReactDOM.render(
-    <div>
-        <h1>Spatial Graph App</h1>
-        <Visualizer />
-    </div>,
+ReactDOM.render(<App />,
     document.getElementById('root')
 );
 
