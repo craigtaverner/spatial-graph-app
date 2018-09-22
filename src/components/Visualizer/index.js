@@ -2,8 +2,7 @@ import React from 'react';
 const yfiles = window.yfiles;
 
 class Visualizer extends React.Component {
-
-    myRef = React.createRef();
+    myRef;
     graphComponent;
     constructor(props) {
         super(props);
@@ -14,7 +13,7 @@ class Visualizer extends React.Component {
     }
 
     componentDidMount() {
-        const myRef = this.myRef.current;
+        const myRef = this.myRef;
         this.graphComponent = new yfiles.view.GraphComponent(myRef);
         this.init();
 
@@ -58,7 +57,15 @@ class Visualizer extends React.Component {
         // center graph
         graphComponent.fitGraphBounds()
     }
+    
+    componentDidUpdate() {
+        this.updateGraph(this.props.nodes, this.props.edges);
+        console.log('did an update');
+    }
     updateGraph(nodes, edges) {
+        if (!nodes || !edges) {
+            return
+        }
         const graphBuilder = new yfiles.binding.GraphBuilder(this.graphComponent.graph)
 
         // we set the default style for the nodes to use
@@ -148,9 +155,7 @@ class Visualizer extends React.Component {
     render() {
         console.log("GraphComponent");
         return ( <
-            div ref = {
-                this.myRef
-            }
+            div ref = {node => this.myRef = node}
             style = {
                 {
                     height: "600px",
@@ -161,8 +166,6 @@ class Visualizer extends React.Component {
             /div>
         )
     }
-
-    componentDidUpdate() {}
 
 }
 

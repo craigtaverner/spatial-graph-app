@@ -5,11 +5,11 @@ import ApiVersion from './common/ApiVersion';
 import Settings from './common/Settings';
 import Projects from './projects/Projects';
 import SearchBar from './SearchBar';
-
+import Visualizer from './Visualizer/index';
 
 import '../index.css'
 
-class App extends Component {
+export class App extends Component {
     state = {
         query: 'MATCH (n) RETURN n',
         nodes: null,
@@ -66,13 +66,16 @@ class App extends Component {
     render() {
         console.log('state res', this.state);
         return <div className="pure-g">
+        <h1>Spatial Graph App</h1>
+        
             <div className="pure-u-1-3">
                 <SearchBar submitQuery={this.submitQuery} onChange={this.hanldeQueryChange} query={this.state.query}/>
                 {/* <ApiVersion apiVersion={this.props.apiVersion}/> */}
                 {/* <Settings settings={this.props.context.global.settings} /> */}
             </div>
             <div className="pure-u-2-3">
-                {/* <Projects projects={this.props.context.projects} /> */}
+
+        <Visualizer edges={this.state.edges} nodes={this.state.nodes} />
             </div>
         </div>
     }
