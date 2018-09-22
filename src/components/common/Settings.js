@@ -20,7 +20,7 @@ export default function Settings({settings}) {
                 {settingKeys.map((key) => (
                     <tr key={key}>
                         <td>{key}</td>
-                        <td>{settings[key].toString()}</td>
+                        <td>{settings[key] ? settings[key].toString() : null}</td>
                     </tr>)
                 )}
             </tbody>
