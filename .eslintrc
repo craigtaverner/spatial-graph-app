@@ -1,0 +1,14 @@
+{
+    "env": {
+      "browser": true,
+      "jquery": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module" // Change to modules eventually
+    },
+    "extends": ["airbnb"],
+    "rules": {
+      "quotes": ["error", "double", {"avoidEscape": true}]
+    }
+  }
