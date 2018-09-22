@@ -1,3 +1,21 @@
 #root {
     margin: 20px;
 }
+
+
+#search-box {
+    width: 80vv;
+    padding: 10vw;
+    flex-direction: 'column';
+    justify-content: 'space-between';
+}
+
+#search-bar {
+    width: 50vw;
+    height: 20vh;
+}
+
+
+#search-button {
+    flex: 1;
+}
