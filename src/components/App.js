@@ -38,7 +38,7 @@ export class App extends Component {
                     WHERE id(n) IN $nodeIds
                     AND id(m) IN $nodeIds
                     RETURN DISTINCT edge 
-                    LIMIT 200`, {nodeIds})
+                    LIMIT 5000`, {nodeIds})
                 const edges = edgeResults.records.map(record => record.get("edge"));
                 
                 console.log("edges", edges)

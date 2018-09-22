@@ -23,7 +23,7 @@ class Visualizer extends React.Component {
         // Enable workarounds for some browser bugs
         const graphComponent = this.graphComponent;
         // initialize graph component
-        graphComponent.inputMode = new yfiles.input.GraphEditorInputMode()
+        graphComponent.inputMode = new yfiles.input.GraphViewerInputMode()
 
         // initialize graph
         const graph = graphComponent.graph
@@ -47,12 +47,7 @@ class Visualizer extends React.Component {
             targetArrow: yfiles.styles.IArrow.DEFAULT
         })
 
-        // create small sample graph
-        const node1 = graph.createNode(new yfiles.geometry.Rect(50, 50, 30, 30))
-        const node2 = graph.createNode(new yfiles.geometry.Rect(0, 150, 30, 30))
-        const node3 = graph.createNode(new yfiles.geometry.Rect(100, 150, 30, 30))
-        graph.createEdge(node1, node2)
-        graph.createEdge(node1, node3)
+        
 
         // center graph
         graphComponent.fitGraphBounds()
@@ -73,8 +68,11 @@ class Visualizer extends React.Component {
             shape: "ellipse",
             fill: "lightblue"
         })
+
+        graphBuilder.locationXBinding = node => node.properties.location.x * 100000;
+        graphBuilder.locationYBinding = node => node.properties.location.y * -100000;
         // and the default size
-        graphBuilder.graph.nodeDefaults.size = new yfiles.geometry.Size(100, 30)
+        graphBuilder.graph.nodeDefaults.size = new yfiles.geometry.Size(3, 3)
         // and also we specify the placements for the labels.
         graphBuilder.graph.edgeDefaults.labels.layoutParameter =
             new yfiles.graph.EdgePathLabelModel({
@@ -98,7 +96,7 @@ class Visualizer extends React.Component {
         // the same for the target side of the relations
         graphBuilder.targetNodeBinding = edge => edge.end.toString()
         // and we display the label, too, using the type of the relationship
-        graphBuilder.edgeLabelBinding = edge => edge.type
+        //graphBuilder.edgeLabelBinding = edge => edge.type
 
         // with the following customization we specify a different style for
         // nodes labelled "Movie"
@@ -106,36 +104,10 @@ class Visualizer extends React.Component {
             shape: "round-rectangle",
             fill: "yellow"
         })
-        // whenever a node is created...
-        graphBuilder.addNodeCreatedListener((sender, args) => {
-            // ...and it is labelled as Movie
-            if (args.sourceObject.labels && args.sourceObject.labels.includes("Movie")) {
-                // we set a custom style
-                args.graph.setStyle(args.item, movieStyle)
-                // and change the size of the node
-                args.graph.setNodeLayout(args.item, new yfiles.geometry.Rect(0, 0, 120, 50))
-            }
-        })
-
-        // similar to the above code, we also change the appearance of the "ACTED_IN" relationship
-        // to a customized visualization
-        const actedInStyle = new yfiles.styles.PolylineEdgeStyle({
-            stroke: "medium blue",
-            smoothingLength: 30,
-            targetArrow: "blue default"
-        })
-        // for each added edge...
-        graphBuilder.addEdgeCreatedListener((sender, args) => {
-            // .. of type "ACTED_IN"
-            if (args.sourceObject.type === "ACTED_IN") {
-                // set the predefined style
-                args.graph.setStyle(args.item, actedInStyle)
-            }
-        })
-
         // this triggers the initial construction of the graph
         graphBuilder.buildGraph()
 
+        this.graphComponent.fitGraphBounds()
     }
 
 
