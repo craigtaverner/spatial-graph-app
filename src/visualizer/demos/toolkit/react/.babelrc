@@ -1,4 +1,0 @@
-{
-  "presets": ["react"],
-  "only": ["./src"]
-}
