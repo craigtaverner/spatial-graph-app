@@ -1,1 +1,0 @@
-{"version":3,"file":"properties-view.component.js","sourceRoot":"","sources":["properties-view.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,sCAAgD;AAQhD;IAAA;IAEA,CAAC;IADU;QAAR,YAAK,EAAE;2DAAe;IADZ,uBAAuB;QALnC,gBAAS,CAAC;YACT,QAAQ,EAAE,iBAAiB;YAC3B,WAAW,EAAE,kCAAkC;YAC/C,SAAS,EAAE,CAAC,iCAAiC,CAAC;SAC/C,CAAC;OACW,uBAAuB,CAEnC;IAAD,8BAAC;CAAA,AAFD,IAEC;AAFY,0DAAuB"}
