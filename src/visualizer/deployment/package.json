@@ -1,0 +1,27 @@
+{
+  "name": "demo-deployment",
+  "description": "Exemplify the deployment of a yFiles for HTML-based application.",
+  "version": "1.0.1",
+  "homepage": "https://www.yworks.com/en/products/yfiles/yfiles-for-html/",
+  "scripts": {
+    "deploy-es5": "grunt deploy-es5",
+    "deploy": "grunt deploy",
+    "demos-es5": "grunt demos-es5"
+  },
+  "dependencies": {
+    "babel-plugin-transform-es2015-arrow-functions": "~6.22.0",
+    "babel-polyfill": "~6.23.0",
+    "babel-preset-es2015": "~6.24.0",
+    "grunt": "~1.0.1",
+    "grunt-babel": "~6.0.0",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-clean": "~1.0.0",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-text-replace": "~0.4.0",
+    "grunt-yfiles-deployment": "./grunt-yfiles-deployment",
+    "load-grunt-tasks": "~3.5.2",
+    "mkdirp": "~0.5.1",
+    "typescript": "~2.6.1"
+  },
+  "private": true
+}
