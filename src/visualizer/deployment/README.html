@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>yFiles for HTML Deployment Tool</title>
+  <link rel="stylesheet" type="text/css" href="../doc/documentation-style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+<header>
+  <div class="logo"></div>
+  <div class="title">
+    <a href="../README.html">yFiles for HTML</a>
+    <span class="angle-right"></span>
+    Deployment Tool
+  </div>
+</header>
+<div class="content">
+  <div class="content-centered">
+    <h1>yFiles for HTML Deployment Tool</h1>
+  </div>
+
+  <div class="block-space-header">
+    <div class="content-centered">
+
+      <h2>Content</h2>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#sample-config">Sample Configuration File</a></li>
+        <li><a href="#setup-and-run">Setup and Run</a></li>
+        <li><a href="#details">Details and Notes</a>
+          <ul>
+            <li><a href="#obfuscation-modes">Obfuscation Modes</a></li>
+            <li><a href="#additional-settings">Additional configuration settings</a></li>
+          </ul>
+        </li>
+        <li><a href="#known-issues">Known Issues</a></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div id="features" class="block-space background-blue">
+    <div class="content-centered">
+
+      <h2>Features</h2>
+    <p>
+      The yFiles for HTML deployment tool and the sample Gruntfile provide the following features: </p>
+
+    <dl>
+      <dt id="obfuscate">
+        Obfuscate and Minify
+      </dt>
+      <dd>
+        <p>
+          This tool obfuscates the public API of the yFiles module files. You can choose to obfuscate either only the
+          parts that you don't use in your code or the complete API and let the tool rename yFiles API usages in your
+          code. In any case, the resulting module files will be minified. The private members of the yFiles library are
+          already obfuscated.
+        </p>
+
+        <p>
+          Note that the resulting yFiles module files are tailor-made to the yFiles API usages in your code in both
+          cases. You'll have to run the tool again after changing your code.
+        </p>
+
+        <p>
+          We highly recommend minifying and obfuscating the yFiles for HTML library prior to deploying your application to a
+          public web server to reduce the download size of the library for the end user. Note that, at the time of
+          writing, you are not required to use obfuscation.
+        </p>
+      </dd>
+      <dt id="moduleType">
+        Generate different module headers.
+      </dt>
+      <dd>
+        <p>
+          The yFiles for HTML package comes with two sets of module files: One set has UMD headers, while the other uses the
+          ES6 module format. <br>
+
+          Although the <a href="../doc/api/index.html#/dguide/getting_started-module_loading">UMD header</a> should work
+          fine for most applications, the deployment tool can also convert it to a different module header. The output
+          module type can be configured using the <code>moduleType</code> config property. The following values are
+          supported:
+        </p>
+        <dl>
+          <dt>keep</dt>
+          <dd>Don't change the module header at all - keep the default yFiles module header</dd>
+          <dt>umd</dt>
+          <dd>Write a standard UMD header</dd>
+          <dt>amd</dt>
+          <dd>Write a RequireJS/AMD header</dd>
+          <dt>cjs</dt>
+          <dd>Write a CommonJS header for use in e.g. NodeJS applications</dd>
+        </dl>
+        <p class="note">
+          Note that when using the library in ES6 module format, only the <strong>keep</strong> option is allowed. Use
+          the UMD version of the library if you need to specify a different module format.
+        </p>
+      </dd>
+      <dt id="definePrefix">
+        Prefix Define Calls
+      </dt>
+      <dd>
+        <p>
+          Optionally, this tool can prefix usages of the global <code>define</code> function in yFiles modules and
+          application sources with a custom prefix that is set with the <code>definePrefix</code> option. This can
+          prevent a name clash with a another "define" in the global namespace. The definition of the define function
+          would have to be <a href="https://requirejs.org/docs/faq-advanced.html#rename">adapted accordingly</a>.
+        </p>
+      </dd>
+      <dt id="demos-es5">
+        Transpile All Demos and Tutorials to ES5
+      </dt>
+      <dd>
+        <p>
+          As all yFiles for HTML demos and tutorials use ES6 syntax, they will only run in recent browsers. To run the
+          demos in older browsers (e.g. Internet Explorer 11), they need to be transpiled to ES5. The Gruntfile in this
+          directory contains a <code>demos-es5</code> task that will apply this conversion, and place the converted
+          demos and tutorials in a top-level <code>demos-es5</code> folder.
+        </p>
+        <p class="note">
+          This feature is not part of the yFiles for HTML deployment tool itself, but it is added to the same Gruntfile
+          for convenience.
+        </p>
+      </dd>
+    </dl>
+  </div>
+  </div>
+
+  <div id="prerequisites" class="block-space">
+    <div class="content-centered">
+      <h2>Prerequisites</h2>
+
+      <p>
+        The yFiles deployment tool comes as the project <code>grunt-yfiles-deployment</code> for the <a
+          href="https://gruntjs.com/">Grunt JavaScript task runner</a>. Like all Grunt projects, it depends on other
+        Grunt projects and Node.js modules. These are not part of the yFiles for HTML package but can be conveniently
+        downloaded with the <a href="https://www.npmjs.com/">npm package manager</a>.</p>
+
+      <p>
+        As a Grunt project, this tool requires <a href="https://nodejs.org/">Node.js</a> to be installed. A node.js
+        installer that is suitable for your system can be downloaded from their website.</p>
+
+      <p>
+        The Node.js installer will install the npm package manager as well, and the command <code>npm</code> should
+        become available in the path.</p>
+    </div>
+  </div>
+
+  <div class="block-space background-blue" id="sample-config">
+    <div class="content-centered">
+      <h2>Sample Configuration File</h2>
+
+      <p>
+        To get you started, this directory contains the sample Grunt file <code>Gruntfile.js</code>. Its configuration
+        obfuscates and minifies one of the yFiles demo applications in the <code>demos</code> directory, its shared demo
+        resources like the demo framework, and of course the yFiles library files, and places them in the new top-level
+        directory <code>dist</code>. In addition, the configuration rearranges these files in a simplified directory
+        structure. You can select the demo to process with the <code>demoName</code> variable of the script.
+      </p>
+
+
+      <p class="note">
+        Note that you must not obfuscate the yFiles license file. Therefore, it is explicitly excluded from the tool's
+        input files in the sample configuration. Instead, a regular copy task copies the unmodified license file to the
+        destination directory.<br> In addition, recently issued licenses contain the annotation <code>@yjs:keep</code>
+        that excludes the file from obfuscation.
+      </p>
+
+      <h3>Babel</h3>
+
+      <p>The yFiles for HTML demo applications are written using ES6 Syntax. To make the deployed application work in
+        older browsers, the <code>deploy-es5</code> Grunt target will also run <a href="https://babeljs.io/">Babel</a>
+        with the <a href="https://babeljs.io/docs/plugins/preset-es2015/">ES2015</a> Preset in order to convert the ES6
+        sources to ES5. Also, the <a href="https://babeljs.io/docs/usage/polyfill/">Babel Polyfill</a> will be
+        referenced in the output files.
+
+      </p>
+    </div>
+  </div>
+  <div class="block-space" id="setup-and-run">
+    <div class="content-centered">
+
+      <h2>Setup and Run</h2>
+
+      <p>If npm and grunt-cli are installed, you can download the package dependencies of the yFiles deployment tool to
+        this directory with</p>
+
+      <pre>
+> npm install
+</pre>
+
+      <div class="note">
+        The <code>package.json</code> references the deployment tool with a relative path. Local package paths are only
+        supported since npm 2.0. If you are using a previous npm version, you can replace the relative path reference
+        with a version number ("1.0.0") and install the <code>grunt-yfiles-deployment</code> module manually, first:
+        <pre>
+> npm install ./grunt-yfiles-deployment
+</pre>
+      </div>
+
+      <p>
+        Then, run the sample configuration file from the command line with the command
+      </p>
+      <pre>
+> npm run-script deploy-es5
+</pre>
+
+      <p>
+        Alternatively, if you only want to support environments that support ES6 syntax natively, you can run the Grunt
+        target that skips the ES5-conversion step instead:</p>
+      <pre>
+> npm run-script deploy
+</pre>
+    </div>
+  </div>
+
+  <div id="details" class="block-space background-blue">
+    <div class="content-centered">
+      <h2>Details and Notes</h2>
+
+      <h3 id="obfuscation-modes">Obfuscation modes</h3>
+      <p>
+        The obfuscation feature has two main modes, which are specified by the option <code>obfuscate</code>.
+      </p>
+      <dl>
+        <dt>obfuscate: false</dt>
+        <dd>
+          Don't obfuscate your source code. Consequently, this keeps all yFiles API calls
+          in your code non-obfuscated and obfuscates only yFiles library code that you don't use (directly). This does
+          not change the semantics of your code and therefore, it is always safe to use this kind of obfuscation.
+        </dd>
+        <dt>obfuscate: true</dt>
+        <dd>
+          Obfuscate all yFiles library code. Consequently, yFiles API calls in your code
+          have to be changed to the obfuscated names as well. Note that in this mode, the obfuscator might wrongly
+          replace non-yFiles property usages if they have the same name as obfuscated yFiles API. To avoid this, the
+          obfusctor comes with a list of common JavaScript API names that it should not change in any case. In addition,
+          you can specify more such names with the option <code>blacklist</code>, or exclude specific names from
+          obfuscation using the <code>@yjs:keep</code> comments:
+          <pre><span class="code-comment">// @yjs:keep=foo,bar</span>
+<span class="code-keyword">function</span> my() {
+  <span class="code-comment">// "foo" and "bar" will not be obfuscated within this scope</span>
+  <span class="code-keyword">var</span> foo = 1;
+}
+
+<span class="code-comment">// @yjs:keep</span>
+<span class="code-keyword">function</span> my() {
+  <span class="code-comment">// No names will be obfuscated within this scope</span>
+  <span class="code-keyword">var</span> foo = 1;
+}</pre>
+        </dd>
+      </dl>
+
+      <h3 id="additional-settings">Additional configuration settings</h3>
+      <dl>
+        <dt>optimize</dt>
+        <dd>
+          <p>
+          Specifies whether the input files will be optimized/minimized. If optimization is enabled,
+          the deployment tool runs <a href="https://github.com/babel/minify">babel-minify</a>
+          on the input files.
+          </p>
+          <p>
+            To enable minification, set the <code>optimize</code> property to <code>true</code>,
+            or pass an options object:
+          </p>
+          <pre>
+<span class="code-comment">// enable optimization with default settings</span>
+optimize: <span class="code-keyword">true</span>
+
+optimize: {
+  <span class="code-comment">// enable dead code removal</span>
+  deadcode: <span class="code-keyword">true</span>
+}</pre>
+          <p>
+            Please refer to
+            <a href="https://github.com/babel/minify/tree/master/packages/babel-preset-minify#1-1-mapping-with-plugin">babel-preset-minify options</a>
+            for minification options documentation.
+            For the default settings, all options except dead code removal are enabled.
+          </p>
+        </dd>
+        <dt>mangle</dt>
+        <dd>
+          Whether the input files should be mangled. If mangling is enabled,
+          the deployment tool runs
+          <a href="https://github.com/babel/minify/tree/master/packages/babel-plugin-minify-mangle-names">the mangle-names babel plugin</a>
+          on the input files. Note that if obfuscation is disabled, files will never be mangled.
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="block-space">
+    <div class="content-centered">
+      <h2 id="known-issues">Known Issues</h2>
+      <h3>
+        Minfication causes runtime error in catch blocks
+      </h3>
+      <p>
+        There is a <a href="https://github.com/babel/minify/issues/781">Known Bug</a> in Babel/Babel-Minify concerning the
+        scope of catch blocks that has already been fixed for Babel 7. As Babel-Minfy currently still uses Babel 6,
+        this bug still causes problems when minifying catch blocks where the exception parameter is <em>not</em> used:
+      </p>
+      <pre>
+try {
+  bar()
+} catch (e) {
+  const message = "error"
+  console.log(message)
+}
+      </pre>
+      <p>
+      After minfication, the catch parameter and the first variable/constant in the catch body will have the same name,
+        causing a runtime error:
+      </p>
+      <pre>
+try {
+  bar();
+} catch (a) {
+  let a = "error"
+  console.log(a);
+}
+      </pre>
+      A possible workaround is to use the catch parameter in the catch block, so the parameter name won't be reused:
+      <pre>
+try {
+  bar()
+} catch (e) {
+  const message = "error"
+  console.log(message + e)
+}
+      </pre>
+    </div>
+  </div>
+  <div class="block-space background-blue">
+    <div class="content-centered">
+
+      <p>
+        Besides the yFiles deployment tool, the sample configuration uses several third party Grunt projects for common
+        tasks like copying and string replacements. This are not an integral part of this tool. Feel free to replace
+        them with other tools as you like.
+      </p>
+
+      <p>
+        For more details about the tool, please have a look at the comments in the configuration file
+        <code>Gruntfile.js</code>. </p>
+    </div>
+  </div>
+</div>
+<footer class="default-footer">
+  <div class="footer-block">
+    <h4>Contents</h4>
+    <a href="../README.html">Welcome Page</a><br>
+    <a href="../doc/api/index.html">API Documentation</a><br>
+    <a href="../doc/api/index.html#/dguide/getting_started">Getting Started</a><br>
+    <a href="../doc/readme/legal/SOFTWARE_LICENSE_AGREEMENT.html">License Agreement</a><br>
+    <a href="../doc/readme/support.html">Help and Support</a>
+  </div>
+  <div class="footer-block">
+    <h4>Contact</h4>
+    yWorks GmbH<br>
+    Vor dem Kreuzberg 28<br>
+    72070 T&uuml;bingen<br>
+    Germany<br>
+    Phone: <a href="tel:+497071979050">+49 7071 979050</a><br>
+    Email: <a href="https://www.yworks.com/contact">contact(at)yworks.com</a>
+  </div>
+  <div class="footer-block">
+    <h4>Follow Us</h4>
+    <div class="social">
+      <a href="https://www.yworks.com/products/yfileshtml" target="_blank" class="web">Homepage</a>
+      <a href="https://www.yworks.com/newsfeed" target="_blank" class="rss">RSS Feed</a>
+    </div>
+    <div>
+      <a href="https://github.com/yWorks" target="_blank" class="gh">GitHub</a>
+      <a href="https://twitter.com/yworks" target="_blank" class="tw">Twitter</a>
+      <a href="https://www.youtube.com/user/yWorksTube" target="_blank" class="yt">YouTube</a>
+    </div>
+    <br><br>
+    <span class="copyright">COPYRIGHT &#x00A9; 2018 yWorks</span><br>
+    <a href="https://www.yworks.com/company/legal/imprint">Imprint</a> |
+    <a href="https://www.yworks.com/company/legal/terms-of-use">Terms of Use</a> |
+    <a href="https://www.yworks.com/company/legal/privacy">Privacy Policy</a>
+  </div>
+  <div class="footer-block logo"></div>
+</footer>
+</body>
+</html>

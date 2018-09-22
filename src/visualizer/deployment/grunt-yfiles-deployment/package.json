@@ -1,0 +1,26 @@
+{
+  "name": "grunt-yfiles-deployment",
+  "description":
+    "Package and minify the yFiles for HTML library and related user files for deployment.",
+  "version": "2.1.0",
+  "homepage": "https://www.yworks.com/en/products/yfiles/yfiles-for-html/",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "main": "tasks/deploy.js",
+  "dependencies": {
+    "babel-core": "6.26.0",
+    "babel-minify": "0.2.0",
+    "babel-plugin-minify-mangle-names": "0.2.0",
+    "es6-shim": "0.35.3",
+    "escodegen": "micschro/escodegen",
+    "esmangle": "1.0.1",
+    "esprima": "4.0.0",
+    "estraverse": "4.2.0"
+  },
+  "private": true,
+  "author": {
+    "name": "yFiles for HTML team @ yWorks GmbH",
+    "email": "yfileshtml@yworks.com"
+  }
+}

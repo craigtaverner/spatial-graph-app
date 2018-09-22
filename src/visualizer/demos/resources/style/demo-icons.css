@@ -1,0 +1,145 @@
+/****************************************************************************
+ ** @license
+ ** This demo file is part of yFiles for HTML 2.1.0.4.
+ ** Copyright (c) 2000-2018 by yWorks GmbH, Vor dem Kreuzberg 28,
+ ** 72070 Tuebingen, Germany. All rights reserved.
+ **
+ ** yFiles demo files exhibit yFiles for HTML functionalities. Any redistribution
+ ** of demo files in source code or binary form, with or without
+ ** modification, is not permitted.
+ **
+ ** Owners of a valid software license for a yFiles for HTML version that this
+ ** demo is shipped with are allowed to use the demo source code as basis
+ ** for their own yFiles for HTML powered applications. Use of such programs is
+ ** governed by the rights and conditions as set out in the yFiles for HTML
+ ** license agreement.
+ **
+ ** THIS SOFTWARE IS PROVIDED ''AS IS'' AND ANY EXPRESS OR IMPLIED
+ ** WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ ** MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
+ ** NO EVENT SHALL yWorks BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ ** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ ** TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ ** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ ** LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ ** NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ ** SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ **
+ ***************************************************************************/
+.demo-icon-yIconZoomOriginal {
+  background-image: url('../icons/zoom-original3-16.svg');
+}
+.demo-icon-yIconZoomIn {
+  background-image: url('../icons/magnify-16.svg');
+}
+.demo-icon-yIconZoomOut {
+  background-image: url('../icons/demagnify-16.svg');
+}
+.demo-icon-yIconZoomFit {
+  background-image: url('../icons/fit-16.svg');
+}
+.demo-icon-yIconCopy {
+  background-image: url('../icons/copy-16.svg');
+}
+.demo-icon-yIconCut {
+  background-image: url('../icons/cut2-16.svg');
+}
+.demo-icon-yIconPaste {
+  background-image: url('../icons/paste-16.svg');
+}
+.demo-icon-yIconDelete {
+  background-image: url('../icons/delete2-16.svg');
+}
+.demo-icon-yIconTrashcan {
+  background-image: url('../icons/delete3-16.svg');
+}
+.demo-icon-yIconNew {
+  background-image: url('../icons/new-document-16.svg');
+}
+.demo-icon-yIconOpen {
+  background-image: url('../icons/open-16.svg');
+}
+.demo-icon-yIconSave {
+  background-image: url('../icons/save-16.svg');
+}
+.demo-icon-yIconPrint {
+  background-image: url('../icons/print-16.svg');
+}
+.demo-icon-yIconPlay {
+  background-image: url('../icons/play2-16.svg');
+}
+.demo-icon-yIconLayout {
+  background-image: url('../icons/play2-16.svg');
+}
+.demo-icon-yIconLayoutOrganic {
+  background-image: url('../icons/layout-organic-16.svg');
+}
+.demo-icon-yIconLayoutHierarchic {
+  background-image: url('../icons/layout-hierarchic-16.svg');
+}
+.demo-icon-yIconProperties {
+  background-image: url('../icons/settings-16.svg');
+}
+.demo-icon-yIconRedo {
+  background-image: url('../icons/redo-16.svg');
+}
+.demo-icon-yIconUndo {
+  background-image: url('../icons/undo-16.svg');
+}
+.demo-icon-yIconGroup {
+  background-image: url('../icons/group-16.svg');
+}
+.demo-icon-yIconUngroup {
+  background-image: url('../icons/ungroup-16.svg');
+}
+.demo-icon-yIconEnterGroup {
+  background-image: url('../icons/enter-group-16.svg');
+}
+.demo-icon-yIconExitGroup {
+  background-image: url('../icons/exit-group-16.svg');
+}
+.demo-icon-yIconSnapping {
+  background-image: url('../icons/snap-16.svg');
+}
+.demo-icon-yIconGrid {
+  background-image: url('../icons/grid-16.svg');
+}
+.demo-icon-yIconOrthogonal {
+  background-image: url('../icons/orthogonal-editing-16.svg');
+}
+.demo-icon-yIconNext {
+  background-image: url('../icons/arrow-right-16.svg');
+}
+.demo-icon-yIconPrevious {
+  background-image: url('../icons/arrow-left-16.svg');
+}
+.demo-icon-yIconShowParent {
+  background-image: url('../icons/arrow-up-16.svg');
+}
+.demo-icon-yIconHideParent {
+  background-image: url('../icons/arrow-down-16.svg');
+}
+.demo-icon-yIconShowChildren {
+  background-image: url('../icons/plus-16.svg');
+}
+.demo-icon-yIconHideChildren {
+  background-image: url('../icons/minus-16.svg');
+}
+.demo-icon-yIconShowAll {
+  background-image: url('../icons/star-16.svg');
+}
+.demo-icon-yIconReload {
+  background-image: url('../icons/reload-16.svg');
+}
+.demo-icon-yIconNodeLabel {
+  background-image: url('../icons/nodelabel-16.svg');
+}
+.demo-icon-yIconEdgeLabel {
+  background-image: url('../icons/edgelabel-16.svg');
+}
+.demo-icon-yIconEdgeThickness {
+  background-image: url('../icons/edge-thickness-16.svg');
+}
+.demo-icon-yIconEdgeDirection {
+  background-image: url('../icons/edge-direction-16.svg');
+}
