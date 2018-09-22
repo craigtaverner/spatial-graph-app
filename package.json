@@ -31,14 +31,11 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "lodash": "^4.17.4",
-<<<<<<< HEAD
     "neo4j-driver": "^1.6.3",
-=======
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
->>>>>>> c960d1a0df09c262c5c6ce398f30d2a7c6659893
     "purecss": "^1.0.0",
     "react": "^16.0.0",
     "react-dev-utils": "^4.1.0",

@@ -34,7 +34,7 @@ class App extends Component {
                 this.setState({nodes})
                 const nodeIds = nodes.map(node => node.identity);
                 const edgeResults = await session.run(
-                    `MATCH (n)-[edge]-(m)
+                    `MATCH (n)-[edge]->(m)
                     WHERE id(n) IN $nodeIds
                     AND id(m) IN $nodeIds
                     RETURN DISTINCT edge 
