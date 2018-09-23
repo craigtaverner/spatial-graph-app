@@ -16,7 +16,6 @@ class Visualizer extends React.Component {
         const myRef = this.myRef;
         this.graphComponent = new yfiles.view.GraphComponent(myRef);
         this.init();
-
     }
 
     init() {
@@ -44,7 +43,8 @@ class Visualizer extends React.Component {
             shape: 'rectangle'
         })
         graph.edgeDefaults.style = new yfiles.styles.PolylineEdgeStyle({
-            targetArrow: yfiles.styles.IArrow.DEFAULT
+            targetArrow: yfiles.styles.IArrow.DEFAULT,
+            stroke: 'black',
         })
 
         
@@ -57,6 +57,7 @@ class Visualizer extends React.Component {
         this.updateGraph(this.props.nodes, this.props.edges);
         console.log('did an update');
     }
+
     updateGraph(nodes, edges) {
         if (!nodes || !edges) {
             return
@@ -66,7 +67,7 @@ class Visualizer extends React.Component {
         // we set the default style for the nodes to use
         graphBuilder.graph.nodeDefaults.style = new yfiles.styles.ShapeNodeStyle({
             shape: "ellipse",
-            fill: "lightblue"
+            fill: "orange"
         })
 
         graphBuilder.locationXBinding = node => node.properties.location.x * 100000;
@@ -130,12 +131,11 @@ class Visualizer extends React.Component {
             div ref = {node => this.myRef = node}
             style = {
                 {
-                    height: "600px",
-                    width: "600px",
+                    height: "100vh",
+                    width: "100vw",
                 }
             } >
-            Visualizer <
-            /div>
+            </div>
         )
     }
 
