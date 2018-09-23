@@ -44,7 +44,7 @@ class Visualizer extends React.Component {
         })
         graph.edgeDefaults.style = new yfiles.styles.PolylineEdgeStyle({
             targetArrow: yfiles.styles.IArrow.DEFAULT,
-            stroke: 'black',
+            stroke: 'white',
         })
 
         
@@ -67,7 +67,7 @@ class Visualizer extends React.Component {
         // we set the default style for the nodes to use
         graphBuilder.graph.nodeDefaults.style = new yfiles.styles.ShapeNodeStyle({
             shape: "ellipse",
-            fill: "orange"
+            fill: "pink"
         })
 
         graphBuilder.locationXBinding = node => node.properties.location.x * 100000;

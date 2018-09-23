@@ -36,6 +36,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: rgba(0,0,0, 0.95);
 }
 
 .yfiles-canvascomponent .yfiles-svgpanel {
