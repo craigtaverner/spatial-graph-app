@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import ApiVersion from './common/ApiVersion';
-import Settings from './common/Settings';
-import Projects from './projects/Projects';
 import SearchBar from './SearchBar';
 import Visualizer from './Visualizer/index';
 
